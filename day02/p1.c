@@ -16,7 +16,7 @@ bool invalid(long long x) {
     sprintf(id, "%lld", x);
     int n = strlen(id);
     if (n&1) return false;
-    return memcmp(id, id+n/2, n/2) == 0;
+    return !memcmp(id, id+n/2, n/2);
 }
 
 int main(void) {

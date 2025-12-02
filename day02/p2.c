@@ -16,28 +16,28 @@ bool invalid(long long x) {
     sprintf(id, "%lld", x);
     int n = strlen(id);
     if (!(n%2)) {
-        if (memcmp(id, id+n/2, n/2) == 0) return true;
+        if (!memcmp(id, id+n/2, n/2)) return true;
     }
     if (!(n%3)) {
         int m = n/3;
-        if (memcmp(id, id+1*m, m) == 0 &&
-            memcmp(id, id+2*m, m) == 0) return true;
+        if (!memcmp(id, id+1*m, m) &&
+            !memcmp(id, id+2*m, m)) return true;
     }
     if (!(n%5)) {
         int m = n/5;
-        if (memcmp(id, id+1*m, m) == 0 &&
-            memcmp(id, id+2*m, m) == 0 &&
-            memcmp(id, id+3*m, m) == 0 &&
-            memcmp(id, id+4*m, m) == 0) return true;
+        if (!memcmp(id, id+1*m, m) &&
+            !memcmp(id, id+2*m, m) &&
+            !memcmp(id, id+3*m, m) &&
+            !memcmp(id, id+4*m, m)) return true;
     }
     if (!(n%7)) {
         int m = n/7;
-        if (memcmp(id, id+1*m, m) == 0 &&
-            memcmp(id, id+2*m, m) == 0 &&
-            memcmp(id, id+3*m, m) == 0 &&
-            memcmp(id, id+4*m, m) == 0 &&
-            memcmp(id, id+5*m, m) == 0 &&
-            memcmp(id, id+6*m, m) == 0) return true;
+        if (!memcmp(id, id+1*m, m) &&
+            !memcmp(id, id+2*m, m) &&
+            !memcmp(id, id+3*m, m) &&
+            !memcmp(id, id+4*m, m) &&
+            !memcmp(id, id+5*m, m) &&
+            !memcmp(id, id+6*m, m)) return true;
     }
     return false;
 }
