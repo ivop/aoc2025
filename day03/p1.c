@@ -7,16 +7,12 @@
 #include <limits.h>
 #include <unistd.h>
 
-#define LINES
-
 char **lines;
 int nlines;
 int space;
 
 char *line;
 size_t n;
-
-int height;
 int width;
 
 int main(void) {
@@ -28,12 +24,11 @@ int main(void) {
         lines[nlines] = strdup(line);
         nlines++;
     }
-    height = nlines;
     width = strlen(lines[0])-1;
 
     long long sum = 0;
 
-    for (int j=0; j<height; j++) {
+    for (int j=0; j<nlines; j++) {
         int larval = 0, larpos = 0;        // but not in last position
         for (int i=0; i<width-1; i++) {
             if (lines[j][i] > larval) {
@@ -41,11 +36,10 @@ int main(void) {
                 larpos = i;
             }
         }
-        int larval2 = 0, larpos2 = 0;
+        int larval2 = 0;
         for (int i=larpos+1; i<width; i++) {
             if (lines[j][i] > larval2) {
                 larval2 = lines[j][i];
-                larpos2 = i;
             }
         }
         larval -= '0';

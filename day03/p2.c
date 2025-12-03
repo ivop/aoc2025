@@ -15,8 +15,6 @@ int space;
 
 char *line;
 size_t n;
-
-int height;
 int width;
 
 int main(void) {
@@ -28,26 +26,21 @@ int main(void) {
         lines[nlines] = strdup(line);
         nlines++;
     }
-    height = nlines;
     width = strlen(lines[0])-1;
 
     long long sum = 0;
 
-    int larvals[12], larposs[12];
-
-    for (int j=0; j<height; j++) {
+    for (int j=0; j<nlines; j++) {
         long long v = 0;
+        int larpos = -1;
         for (int x=0; x<12; x++) {
             int larval = 0;
-            int larpos = x ? larposs[x-1]+1 : 0;
-            for (int i=larpos; i<width-(12-1-x); i++) {
+            for (int i=larpos+1; i<width-(12-1-x); i++) {
                 if (lines[j][i] > larval) {
                     larval = lines[j][i];
                     larpos = i;
                 }
             }
-            larposs[x] = larpos;
-            larvals[x] = larval;
             v *= 10;
             v += larval - '0';
         }
