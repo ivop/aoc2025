@@ -13,15 +13,20 @@ struct coor {
     int x, y, z;
     int circuit;
     bool con;
-} boxes[10000];
+} boxes[1000];
+double dists[1000*1000];
+int circuits[1000];
 
-int circuits[10000];
-
-static double distance(struct coor *a, struct coor *b) {
-    double dx = abs(a->x-b->x);
-    double dy = abs(a->y-b->y);
-    double dz = abs(a->z-b->z);
-    return sqrt(dx*dx + dy*dy + dz*dz);
+static double distance(int i, int j) {
+    if (!dists[i*1000+j]) {
+        struct coor *a = &boxes[i], *b = &boxes[j];
+        double dx = abs(a->x-b->x);
+        double dy = abs(a->y-b->y);
+        double dz = abs(a->z-b->z);
+        double dist = dx*dx + dy*dy + dz*dz;    // omit sqrt for speed
+        dists[i*1000+j]= dist;
+    }
+    return dists[i*1000+j];
 }
 
 int main(void) {
@@ -43,7 +48,7 @@ int main(void) {
         for (int i=0; i<nboxes; i++) {
             for (int j=i+1; j<nboxes; j++) {
                 double sd;
-                if ((sd = distance(&boxes[i], &boxes[j])) < smallest) {
+                if ((sd = distance(i, j)) < smallest) {
                     if (sd <= prev_smallest) continue;
                     s1 = i;
                     s2 = j;
