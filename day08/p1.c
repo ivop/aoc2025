@@ -41,7 +41,7 @@ int main(void) {
     }
 
     double prev_smallest = 0;
-    for (int k=0; k<1000; k++) {
+    for (int k=0; k<(nboxes==1000 ? 1000 : 10); k++) {
         double smallest = DBL_MAX;
         int s1=0, s2=1;
         for (int i=0; i<nboxes; i++) {
@@ -90,6 +90,5 @@ int main(void) {
         if (circuits[i] > largest3 && circuits[i] < largest2)
             largest3 = circuits[i];
 
-    int mul = largest * largest2 * largest3;
-    printf("%d x %d x %d = %d\n", largest, largest2, largest3, mul);
+    printf("%d\n", largest * largest2 * largest3);
 }
