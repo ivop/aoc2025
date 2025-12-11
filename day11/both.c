@@ -7,9 +7,6 @@
 #include <limits.h>
 #include <unistd.h>
 
-char *line;
-size_t n;
-
 #define MAX (26*26*26)
 #define C2I(x) ((x)-'a')
 #define YOU (C2I('y')*26*26 + C2I('o')*26 + C2I('u'))
